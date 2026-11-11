@@ -1,0 +1,115 @@
+/* DESIGN B: ALPINE. Night monochrome, pale text, one brand accent for anything pressable, contour lines behind the logo. */
+[data-theme="alpine"]{
+  --bg:#0E100E;--fg:#F3F6F4;--muted:#8E968F;--line:rgba(243,246,244,.13);
+  --accent:#7D8D39;--accent-ink:#0E100E;--accent-rgb:125,141,57;--accent-2:#FF5A22;
+  --disc:#0B0C0B;
+  --map-filter:grayscale(1) invert(.9) contrast(.9);
+  --contour-line:125,141,57;--contour-fade:14,16,14; /* read by app.js */
+  --focus:var(--fg);
+  color-scheme:dark;background:var(--bg);color:var(--fg);
+
+  .contours{display:block}
+  .bar-inner{display:flex;justify-content:space-between;align-items:center;padding-block:20px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--logo);font-size:12px;letter-spacing:.32em;text-transform:uppercase}
+  .brand .mark{width:22px}
+  .nav{gap:20px}
+  .navl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+  .navl:hover{color:var(--accent)}
+  .mini-book{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.14em;border-radius:2px}
+
+  .hero{min-height:clamp(400px,66svh,680px);display:flex;align-items:center;justify-content:center;text-align:center}
+  .hero-inner{display:flex;flex-direction:column;align-items:center;padding-block:32px 56px}
+  .hero-mark{width:96px;margin-bottom:22px}
+  .wm-text{display:flex;flex-direction:column;align-items:center}
+  .word{font-family:var(--logo);font-weight:300;font-size:clamp(40px,8vw,84px);letter-spacing:.22em;margin-right:-.22em;line-height:1}
+  .word span{display:inline-block}
+  .sub{margin-top:12px;font-family:var(--logo);font-size:13px;letter-spacing:.6em;margin-right:-.6em;color:var(--accent)}
+  .coord{margin-top:30px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted);background:var(--bg);padding:6px 12px}
+
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:18px}
+  .section-head h2{font-variation-settings:"wdth" 125;font-weight:600;font-size:clamp(26px,3.4vw,34px);letter-spacing:.02em;text-transform:uppercase;line-height:1.1}
+  .aside{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:right}
+
+  /* Barber medallions: the same round portrait for everyone, colour comes up on touch. */
+  .barbers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:48px 24px;padding-top:48px}
+  .barber{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+  .pic{width:100%;max-width:236px;aspect-ratio:1;margin:12px 0 26px}
+  .pic::before,.pic::after{content:"";position:absolute;border-radius:50%;pointer-events:none;transition:inset .7s var(--ease),border-color .7s,transform 1.2s var(--ease)}
+  .pic::before{inset:-9px;border:1px solid var(--line)}
+  .pic::after{inset:-18px;border:1px dashed rgba(var(--accent-rgb),.35)}
+  .poster{display:none}
+  .medal{display:block;position:absolute;inset:0;border-radius:50%;overflow:hidden;background:var(--disc)}
+  .medal img{position:absolute;inset:0;width:100%;height:100%;transition:opacity .8s var(--ease),transform 1.2s var(--ease)}
+  .m-col{opacity:0}
+  .barber:hover .m-col,.barber:focus-within .m-col{opacity:1}
+  .barber:hover .medal img,.barber:focus-within .medal img{transform:scale(1.04)}
+  .barber:hover .pic::before{inset:-13px;border-color:rgba(var(--accent-rgb),.7)}
+  .barber:hover .pic::after{transform:rotate(90deg)}
+  .idx{display:block;margin-bottom:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--accent)}
+  .idx span+span{color:var(--muted)}
+  .who{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+  .name{font-variation-settings:"wdth" 112;font-weight:500;font-size:21px;line-height:1.2}
+  .handle{font-family:var(--mono);font-size:12px;color:var(--muted);transition:color .2s}
+  .handle:hover{color:var(--accent)}
+  .book{display:inline-flex;justify-content:center;align-items:center;width:100%;max-width:236px;min-height:46px;margin-top:18px;border:1px solid var(--accent);border-radius:2px;color:var(--accent);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:background .25s,color .25s}
+  .book:hover{background:var(--accent);color:var(--accent-ink)}
+  .book .arr{display:none}
+
+  .reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-top:32px}
+  .reel-video{border-radius:2px;outline:1px solid var(--line);outline-offset:6px}
+  .rail-meta{font-family:var(--mono);font-weight:400;color:var(--muted)}
+
+  .visit{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding-top:32px}
+  .addr{font-variation-settings:"wdth" 115;font-weight:500;font-size:clamp(30px,4vw,44px);line-height:1.15}
+  .addr span{display:block}
+  .postcode{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--accent)}
+  .visit-links{align-self:start}
+  .vlink{display:flex;justify-content:space-between;padding-block:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+  .vlink:last-child{border-bottom:1px solid var(--line)}
+  .vlink:hover{color:var(--accent)}
+  .k{display:none}
+  .v{display:flex;justify-content:space-between;width:100%;font-weight:400}
+  .map{grid-column:1/-1;aspect-ratio:21/8;border:1px solid var(--line);border-radius:2px}
+  .map iframe{height:100%;filter:var(--map-filter)}
+
+  .foot{padding-top:clamp(56px,8vw,96px)}
+  .foot-inner{display:flex;justify-content:space-between;gap:12px;padding-block:0 32px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  @media (max-width:1024px){.barbers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:860px){.visit{grid-template-columns:1fr}}
+
+  /* Phones: medallions sit two by two so all four barbers are on screen at once; clips become a swipe rail. */
+  @media (max-width:760px){
+    .barbers{gap:40px 18px;padding-top:36px}
+    .pic{margin:10px 0 22px}
+    .pic::before{inset:-6px}
+    .pic::after{inset:-12px}
+    .name{font-size:17px}
+    .handle{font-size:11px}
+    .book{min-height:44px;margin-top:14px;font-size:10px;letter-spacing:.12em}
+    .reels{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin-inline:calc(var(--gutter)*-1);padding:32px var(--gutter) 8px;scroll-padding-inline:var(--gutter);scrollbar-width:none}
+    .reels::-webkit-scrollbar{display:none}
+    .reel{flex:0 0 74%;scroll-snap-align:start}
+    .reels+.rail-meta{display:flex}
+    .map{aspect-ratio:4/3}
+  }
+  @media (max-width:420px){
+    .aside{display:none}
+    .handle{font-size:10px;letter-spacing:-.01em}
+  }
+}
+
+[data-theme="alpine"][data-palette="ember"]{
+  --accent:#FF5A22;--accent-rgb:255,90,34;--accent-2:#7D8D39;--contour-line:255,90,34
+}
+[data-theme="alpine"][data-palette="graphite"]{
+  --bg:#1A1C1B;--fg:#F3F6F4;--muted:#9AA19C;--line:rgba(243,246,244,.15);
+  --accent:#F3F6F4;--accent-ink:#1A1C1B;--accent-rgb:243,246,244;--accent-2:#FF5A22;
+  --contour-line:243,246,244;--contour-fade:26,28,27
+}
+[data-theme="alpine"][data-palette="graphite"] .sub,[data-theme="alpine"][data-palette="graphite"] .postcode{color:var(--accent-2)}
+[data-theme="alpine"][data-palette="snow"]{
+  --bg:#F3F6F4;--fg:#0E100E;--muted:#5F6661;--line:rgba(14,16,14,.14);
+  --accent:#5B6E2C;--accent-ink:#F3F6F4;--accent-rgb:91,110,44;--accent-2:#FF5A22;--disc:#0E100E;
+  --map-filter:grayscale(1) contrast(1.05);--contour-line:91,110,44;--contour-fade:243,246,244;color-scheme:light
+}

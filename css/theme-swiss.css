@@ -1,0 +1,95 @@
+/* DESIGN A: SWISS. Ink on paper, strict four-column grid, one hot accent from the brand palette. */
+[data-theme="swiss"]{
+  --bg:#F3F6F4;--fg:#0E100E;--muted:#5F6661;
+  --accent:#FF5A22;--accent-ink:#0E100E;--accent-2:#5B6E2C;
+  
+  --contour-line:14,16,14;--contour-fade:243,246,244;
+  --focus:var(--fg);
+  color-scheme:light;background:var(--bg);color:var(--fg);
+
+  .bar-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:center;padding-block:16px;border-bottom:2px solid currentColor;font-size:12px}
+  .nav{display:contents}
+  .brand{display:flex;align-items:center;gap:8px;font-family:var(--logo);font-weight:500;letter-spacing:.24em;text-transform:uppercase}
+  .brand .mark{width:20px}
+  .navl{text-transform:uppercase;letter-spacing:.06em;font-weight:600;transition:color .2s}
+  .navl:hover{color:var(--accent)}
+  .mini-book{font-weight:800}
+
+  .hero-inner{padding-block:48px 32px;text-align:center}
+  .hero-mark{width:clamp(80px,11vw,130px);margin:0 auto 26px}
+  .wm-svg{display:block;width:100%;height:auto}
+  .wm-svg text{fill:currentColor;font-family:var(--logo)}
+
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:18px}
+  .section-head h2{font-weight:900;font-variation-settings:"wdth" 62;text-transform:uppercase;font-size:clamp(48px,5vw,64px);line-height:.88}
+  .aside{display:block;max-width:20ch;text-align:right;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  /* Barber cards: the same poster crop, frame and rhythm for everyone. */
+  .barbers,.reels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .reels{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .barber,.reel{display:flex;flex-direction:column;min-width:0;border-top:2px solid var(--fg);padding:14px 12px 24px}
+  .barber:first-child,.reel:first-child{padding-left:0}
+  .barber:last-child,.reel:last-child{padding-right:0}
+  .barber+.barber,.reel+.reel{border-left:1px solid var(--fg)}
+  .idx{display:flex;justify-content:space-between;order:-1;margin-bottom:12px;font-size:11px;font-weight:700;letter-spacing:.08em;font-variant-numeric:tabular-nums}
+  .idx span:first-child{display:inline-flex;align-items:center;gap:8px}
+  .idx span:first-child::before{content:"";width:8px;height:8px;background:var(--accent)}
+  .pic{overflow:hidden;aspect-ratio:952/1190;background:#fff;margin-bottom:16px}
+  .poster{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+  .barber:hover .poster{transform:scale(1.035)}
+  .who{display:flex;flex-direction:column;gap:2px;flex:1}
+  .name{font-size:18px;font-weight:800;font-variation-settings:"wdth" 88;line-height:1.15}
+  .handle{align-self:flex-start;font-size:13px;color:var(--muted);transition:color .2s;text-decoration:underline 2px transparent;text-underline-offset:4px}
+  .handle:hover{color:var(--fg);text-decoration-color:var(--accent)}
+  .book{margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:48px;padding:0 14px;background:var(--fg);color:var(--bg);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;transition:background .2s,color .2s}
+  .book .arr{transition:transform .3s var(--ease)}
+  .book:hover{background:var(--accent);color:var(--accent-ink)}
+  .book:hover .arr{transform:translateX(4px)}
+
+  .visit{display:grid;grid-template-columns:1fr 1fr;gap:32px;border-top:2px solid var(--fg);padding-top:16px}
+  .addr{font-weight:900;font-variation-settings:"wdth" 62;text-transform:uppercase;font-size:clamp(44px,4.6vw,60px);line-height:.9}
+  .addr span{display:block}
+  .addr .postcode{display:inline-block;margin-top:.08em;padding:.06em .1em 0;background:var(--accent);color:var(--accent-ink)}
+  .visit-links{display:grid;gap:12px;align-content:start}
+  .vlink{display:flex;flex-direction:column;justify-content:space-between;gap:22px;padding:16px 18px;background:var(--fg);color:var(--bg);border:2px solid var(--fg);transition:background .2s,color .2s,border-color .2s}
+  .vlink-alt{background:transparent;color:var(--fg)}
+  .vlink:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .k{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;opacity:.7}
+  .v{display:flex;justify-content:space-between;gap:8px;font-weight:900;font-variation-settings:"wdth" 62;text-transform:uppercase;font-size:clamp(26px,2.8vw,34px);line-height:.9}
+  .map{grid-column:1/-1;aspect-ratio:21/8;border:2px solid var(--fg)}
+  .map iframe{height:100%;filter:grayscale(1) contrast(1.08)}
+
+  .foot{padding-top:clamp(56px,8vw,96px)}
+  .foot-inner{display:flex;justify-content:space-between;gap:12px;border-top:2px solid var(--fg);padding-block:14px 24px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+
+  @media (max-width:1024px) and (min-width:761px){
+    .barbers{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .barber:nth-child(odd){padding-left:0;border-left:0}
+    .barber:nth-child(even){padding-right:0}
+  }
+  @media (max-width:860px){.visit{grid-template-columns:1fr}}
+
+  /* Phones: posters become a swipe rail with a counter, so each portrait gets most of the screen. */
+  @media (max-width:760px){
+    .section-head h2{font-size:clamp(52px,15vw,64px)}
+    .barbers,.reels{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);scrollbar-width:none}
+    .barbers::-webkit-scrollbar,.reels::-webkit-scrollbar{display:none}
+    .barber,.reel,.barber:first-child,.barber:last-child,.reel:first-child,.reel:last-child{flex:0 0 82%;scroll-snap-align:start;padding:12px 0 0;border-left:0}
+    .reel{flex-basis:74%}
+    .barber+.barber,.reel+.reel{border-left:0}
+    .rail-meta{display:flex}
+    .map{aspect-ratio:4/3}
+  }
+  @media (max-width:640px){
+    .bar-inner{grid-template-columns:1fr auto auto;gap:24px}
+    .aside{max-width:14ch}
+  }
+}
+
+[data-theme="swiss"][data-palette="moss"]{--accent:#5B6E2C;--accent-ink:#F3F6F4;--accent-2:#FF5A22;}
+[data-theme="swiss"][data-palette="olive"]{--accent:#7D8D39;--accent-ink:#0E100E;--accent-2:#FF5A22;}
+[data-theme="swiss"][data-palette="ink"]{
+  --bg:#0E100E;--fg:#F3F6F4;--muted:#949B96;--accent:#FF5A22;--accent-ink:#0E100E;--accent-2:#7D8D39;
+  --contour-line:243,246,244;--contour-fade:14,16,14;color-scheme:dark
+}
+[data-theme="swiss"][data-palette="ink"] .pic{background:#0E100E}

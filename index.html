@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Summit Barber Studio, Newcastle upon Tyne</title>
+<meta name="description" content="Summit Barber Studio, 7 Cross Street, Newcastle upon Tyne. Book your barber.">
+<meta name="theme-color" content="#F3F6F4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@200;300;400;500;600;800&display=swap">
+
+<!-- Order matters: base first, then one file per design, hero variants, switcher last. -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/theme-swiss.css">
+<link rel="stylesheet" href="css/theme-alpine.css">
+<!-- + add new design stylesheets here -->
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/switcher.css">
+
+<!-- Blocking on purpose: sets data-theme, data-palette and data-hero before first paint so there is no flash. -->
+<script src="js/themes.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="base"><rect x="0" y="0" width="100" height="60"/></clipPath>
+    <g id="m" clip-path="url(#base)" fill="none" stroke="currentColor" stroke-linejoin="miter" stroke-miterlimit="10">
+      <path d="M2 66 L50 5 L98 66" stroke-width="7.5"/>
+      <path d="M30.5 31 L54 61" stroke-width="7.5"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- Compact bar that slides in once the hero has scrolled away. -->
+<div class="minibar" data-minibar>
+  <div class="wrap minibar-inner">
+    <a class="brand" href="#top" aria-label="Summit Barber Studio, back to top">
+      <svg class="mark" viewBox="0 0 100 62" aria-hidden="true"><use href="#m"/></svg>
+      <span>Summit</span>
+    </a>
+    <a class="mini-book" href="#barbers"><span data-copy="mini-book">Book</span><span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</div>
+
+<div class="stage" id="top">
+  <canvas class="contours" data-contour aria-hidden="true"></canvas>
+
+  <header class="bar">
+    <div class="wrap bar-inner">
+      <a class="brand" href="#top" aria-label="Summit Barber Studio, back to top">
+        <svg class="mark" viewBox="0 0 100 62" aria-hidden="true"><use href="#m"/></svg>
+        <span>Summit</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a class="navl nav-barbers" href="#barbers">Barbers</a>
+        <a class="navl" href="#visit">Visit</a>
+        <a class="navl" href="https://instagram.com/summit.barberstudio" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Summit Barber Studio">
+    <div class="hero-pin">
+      <!-- Video layers. Each hero variant (css/hero.css) switches on the layers it needs.
+           .hero-frame fills the hero for full-bleed variants and becomes the picture frame in Editorial. -->
+      <div class="hero-frame">
+      <div class="hero-media" aria-hidden="true">
+        <video class="hero-video" muted playsinline loop preload="none" disablepictureinpicture poster="assets/web/hero-poster.jpg"></video>
+        <div class="hero-tint"></div>
+        <div class="hero-shade"></div>
+        <div class="hero-shutter"><i></i><i></i><i></i><i></i></div>
+        <canvas class="hero-contours"></canvas>
+        <svg class="hero-geo"></svg>
+        <div class="hero-hud">
+          <span class="hud hud-tl">54.97° N<br>1.62° W</span>
+          <span class="hud hud-tr"><b class="rec"></b><span data-timecode>00:00</span></span>
+          <span class="hud hud-bl">7 Cross Street</span>
+          <span class="hud hud-br">NE1 4XE</span>
+        </div>
+      </div>
+      <svg class="hero-knock" aria-hidden="true"></svg>
+      <button class="hero-toggle" type="button" aria-label="Pause background video" data-hero-toggle>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 6h3v12H8zM13 6h3v12h-3z"/><path class="i-play" d="M8 5.5v13l10.5-6.5z"/></svg>
+      </button>
+      </div>
+
+      <div class="wrap hero-inner">
+        <h1 class="sr-only">Summit Barber Studio</h1>
+        <svg class="mark hero-mark" viewBox="0 0 100 62" aria-hidden="true"><use href="#m"/></svg>
+
+        <!-- Wordmark variants: each design shows the one it wants (see base.css). -->
+        <svg class="wm wm-svg" viewBox="0 0 1000 214" aria-hidden="true">
+          <text x="0" y="150" font-size="196" font-weight="300" textLength="1000" lengthAdjust="spacing">SUMMIT</text>
+          <text x="4" y="208" font-size="34" font-weight="400" textLength="994" lengthAdjust="spacing">BARBER STUDIO</text>
+        </svg>
+        <div class="wm wm-text" aria-hidden="true">
+          <span class="word"><span style="--i:0">S</span><span style="--i:1">U</span><span style="--i:2">M</span><span style="--i:3">M</span><span style="--i:4">I</span><span style="--i:5">T</span></span>
+          <span class="sub">BARBER STUDIO</span>
+          <span class="coord">7 CROSS STREET · NE1 4XE</span>
+        </div>
+
+        <div class="hero-cta">
+          <a class="cta cta-primary" href="#barbers"><span data-copy="cta-book">Book a barber</span><span class="arr" aria-hidden="true">→</span></a>
+          <a class="cta cta-ghost" href="#visit"><span data-copy="cta-find">Find the studio</span></a>
+        </div>
+      </div>
+
+      <span class="hero-cue" aria-hidden="true"><i></i></span>
+    </div>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Summit Barber Studio <b>·</b> 7 Cross Street <b>·</b> Newcastle upon Tyne <b>·</b> NE1 4XE <b>·</b>&nbsp;</span>
+        <span>Summit Barber Studio <b>·</b> 7 Cross Street <b>·</b> Newcastle upon Tyne <b>·</b> NE1 4XE <b>·</b>&nbsp;</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<main>
+  <section class="section" id="barbers" aria-labelledby="barbers-title">
+    <div class="wrap">
+      <div class="section-head"><h2 id="barbers-title" data-copy="barbers-title">Barbers</h2><p class="aside" data-copy="barbers-aside">Book direct on Fresha</p></div>
+      <ul class="barbers" data-rail>
+        <li class="barber">
+          <figure class="pic">
+            <img class="poster" src="assets/web/kr-poster-480.webp" srcset="assets/web/kr-poster-480.webp 480w, assets/web/kr-poster-900.webp 900w" sizes="(max-width:760px) 80vw, (max-width:1024px) 50vw, 25vw" width="952" height="1190" alt="Kieran Rose at work in the studio" loading="lazy" decoding="async">
+            <span class="medal" aria-hidden="true"><img class="m-bw" src="assets/web/kr-round-bw.webp" width="560" height="560" alt="" loading="lazy" decoding="async"><img class="m-col" src="assets/web/kr-round.webp" width="560" height="560" alt="" loading="lazy" decoding="async"></span>
+          </figure>
+          <span class="idx" aria-hidden="true"><span>01</span><span>/04</span></span>
+          <div class="who"><h3 class="name">Kieran Rose</h3><a class="handle" href="https://instagram.com/blackcatbarber" target="_blank" rel="noopener">@blackcatbarber</a></div>
+          <a class="book" href="https://www.fresha.com/p/kieran-rose-2718481" target="_blank" rel="noopener"><span>Book Kieran</span><span class="arr" aria-hidden="true">→</span><span class="sr-only"> on Fresha, opens in a new tab</span></a>
+        </li>
+        <li class="barber">
+          <figure class="pic">
+            <img class="poster" src="assets/web/bc-poster-480.webp" srcset="assets/web/bc-poster-480.webp 480w, assets/web/bc-poster-900.webp 900w" sizes="(max-width:760px) 80vw, (max-width:1024px) 50vw, 25vw" width="952" height="1190" alt="Ben Campbell at work in the studio" loading="lazy" decoding="async">
+            <span class="medal" aria-hidden="true"><img class="m-bw" src="assets/web/bc-round-bw.webp" width="560" height="560" alt="" loading="lazy" decoding="async"><img class="m-col" src="assets/web/bc-round.webp" width="560" height="560" alt="" loading="lazy" decoding="async"></span>
+          </figure>
+          <span class="idx" aria-hidden="true"><span>02</span><span>/04</span></span>
+          <div class="who"><h3 class="name">Ben Campbell</h3><a class="handle" href="https://instagram.com/bwcampbell97" target="_blank" rel="noopener">@bwcampbell97</a></div>
+          <a class="book" href="https://www.fresha.com/p/ben-campbell-3229369" target="_blank" rel="noopener"><span>Book Ben</span><span class="arr" aria-hidden="true">→</span><span class="sr-only"> on Fresha, opens in a new tab</span></a>
+        </li>
+        <li class="barber">
+          <figure class="pic">
+            <img class="poster" src="assets/web/bm-poster-480.webp" srcset="assets/web/bm-poster-480.webp 480w, assets/web/bm-poster-900.webp 900w" sizes="(max-width:760px) 80vw, (max-width:1024px) 50vw, 25vw" width="952" height="1190" alt="Breandan McGhee at work in the studio" loading="lazy" decoding="async">
+            <span class="medal" aria-hidden="true"><img class="m-bw" src="assets/web/bm-round-bw.webp" width="560" height="560" alt="" loading="lazy" decoding="async"><img class="m-col" src="assets/web/bm-round.webp" width="560" height="560" alt="" loading="lazy" decoding="async"></span>
+          </figure>
+          <span class="idx" aria-hidden="true"><span>03</span><span>/04</span></span>
+          <div class="who"><h3 class="name">Breandan McGhee</h3><a class="handle" href="https://instagram.com/canadianclipperkid" target="_blank" rel="noopener">@canadianclipperkid</a></div>
+          <a class="book" href="https://www.fresha.com/p/canadian-clipper-kid-3531518" target="_blank" rel="noopener"><span>Book Breandan</span><span class="arr" aria-hidden="true">→</span><span class="sr-only"> on Fresha, opens in a new tab</span></a>
+        </li>
+        <li class="barber">
+          <figure class="pic">
+            <img class="poster" src="assets/web/dr-poster-480.webp" srcset="assets/web/dr-poster-480.webp 480w, assets/web/dr-poster-900.webp 900w" sizes="(max-width:760px) 80vw, (max-width:1024px) 50vw, 25vw" width="952" height="1190" alt="David Reed at work in the studio" loading="lazy" decoding="async">
+            <span class="medal" aria-hidden="true"><img class="m-bw" src="assets/web/dr-round-bw.webp" width="560" height="560" alt="" loading="lazy" decoding="async"><img class="m-col" src="assets/web/dr-round.webp" width="560" height="560" alt="" loading="lazy" decoding="async"></span>
+          </figure>
+          <span class="idx" aria-hidden="true"><span>04</span><span>/04</span></span>
+          <div class="who"><h3 class="name">David Reed</h3><a class="handle" href="https://instagram.com/barber.farmer" target="_blank" rel="noopener">@barber.farmer</a></div>
+          <a class="book" href="https://www.fresha.com/p/david-reed-5806012" target="_blank" rel="noopener"><span>Book David</span><span class="arr" aria-hidden="true">→</span><span class="sr-only"> on Fresha, opens in a new tab</span></a>
+        </li>
+      </ul>
+      <div class="rail-meta" aria-hidden="true"><span class="rail-count">01 / 04</span><span class="rail-bar"><i></i></span></div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head"><h2 id="work-title" data-copy="work-title">Work</h2><p class="aside" data-copy="work-aside">From the chair</p></div>
+      <ul class="reels" data-rail>
+        <li class="reel"><video class="reel-video" muted playsinline loop preload="none" disablepictureinpicture poster="assets/web/reel-1.jpg" data-src="assets/web/reel-1.mp4" aria-label="Short clip of a cut in progress at Summit"></video></li>
+        <li class="reel"><video class="reel-video" muted playsinline loop preload="none" disablepictureinpicture poster="assets/web/reel-2.jpg" data-src="assets/web/reel-2.mp4" aria-label="Short clip of a beard trim at Summit"></video></li>
+        <li class="reel"><video class="reel-video" muted playsinline loop preload="none" disablepictureinpicture poster="assets/web/reel-3.jpg" data-src="assets/web/reel-3.mp4" aria-label="Short clip of a fade being cut at Summit"></video></li>
+      </ul>
+      <div class="rail-meta" aria-hidden="true"><span class="rail-count">01 / 03</span><span class="rail-bar"><i></i></span></div>
+    </div>
+  </section>
+
+  <section class="section" id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="visit-title" data-copy="visit-title">Visit</h2>
+      </div>
+      <div class="visit">
+        <address class="addr">
+          <span class="street" data-copy="street">7 Cross Street</span>
+          <span class="city" data-copy="city">Newcastle upon Tyne</span>
+          <span class="postcode">NE1 4XE</span>
+        </address>
+        <div class="visit-links">
+          <a class="vlink" href="https://www.google.com/maps/search/?api=1&query=7+Cross+Street+Newcastle+upon+Tyne+NE1+4XE" target="_blank" rel="noopener">
+            <small class="k">Google Maps</small>
+            <strong class="v"><span data-copy="directions">Get directions</span><span class="arr" aria-hidden="true">↗</span></strong>
+          </a>
+          <a class="vlink vlink-alt" href="https://instagram.com/summit.barberstudio" target="_blank" rel="noopener">
+            <small class="k">@summit.barberstudio</small>
+            <strong class="v"><span data-copy="instagram">Instagram</span><span class="arr" aria-hidden="true">↗</span></strong>
+          </a>
+        </div>
+        <div class="map">
+          <iframe title="Map showing Summit Barber Studio at 7 Cross Street, Newcastle upon Tyne" src="https://www.google.com/maps?q=7+Cross+Street,+Newcastle+upon+Tyne+NE1+4XE&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <!-- <div class="wrap foot-inner"><span>Summit Barber Studio</span><span>Newcastle upon Tyne</span></div> -->
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+/* BASE: shared reset + structure hooks. No colours or type personality here; designs own that. */
+:root{
+  --sans:"Archivo",system-ui,sans-serif;--logo:"Montserrat","Archivo",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--gutter:24px;
+  /* Brand palette (colorhunt f3f6f4 / 7d8d39 / 5b6e2c / ff5a22). Designs pick from these for --accent and --accent-2. */
+  --paper:#F3F6F4;--olive:#7D8D39;--moss:#5B6E2C;--ember:#FF5A22;--ink:#0E100E;
+  --on-video:#F3F6F4;--video-ink:11,12,11;
+  --ease:cubic-bezier(.2,.7,.2,1);--ease-io:cubic-bezier(.76,0,.24,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,p,ul,address,figure{margin:0;padding:0}
+ul{list-style:none}
+address{font-style:normal}
+a{color:inherit;text-decoration:none}
+small,strong{font:inherit}
+img,video{max-width:100%}
+:focus-visible{outline:2px solid var(--focus,currentColor);outline-offset:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.mark{display:block;height:auto}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{max-width:var(--wrap,1340px);margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+
+/* Page chrome */
+.stage{position:relative}
+.stage>.bar,.stage>.hero{position:relative;z-index:1}
+.section{scroll-margin-top:64px;padding-block:clamp(56px,8vw,96px) 0}
+.nav{display:flex;gap:20px}
+
+/* Optional pieces: hidden until a design turns them on */
+.contours{display:none;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wm-svg,.wm-text,.aside,.idx,.medal,.rail-meta{display:none}
+
+/* Cards share one frame so every barber reads the same. */
+.pic,[data-rail],.barber,.reel{position:relative} /* keeps .sr-only text inside the swipe rails */
+.poster,.medal img{display:block}
+.reel-video{display:block;width:100%;aspect-ratio:952/1190;object-fit:cover;background:#fff;cursor:pointer}
+
+/* Rail counter: shown by a design when its list becomes a swipe carousel */
+.rail-meta{align-items:center;gap:14px;margin-top:16px;font-size:11px;font-weight:600;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.rail-bar{position:relative;flex:1;height:2px;background:color-mix(in srgb,currentColor 15%,transparent);overflow:hidden}
+.rail-bar i{position:absolute;inset:0;background:var(--accent);transform-origin:left;transform:scaleX(var(--p,.25));transition:transform .3s var(--ease)}
+
+/* Map */
+.map{position:relative;overflow:hidden}
+.map iframe{display:block;width:100%;height:100%;min-height:260px;border:0}
+
+/* Slim bar that appears once the hero has gone */
+.minibar{position:fixed;inset:0 0 auto;z-index:60;color:var(--fg);background:color-mix(in srgb,var(--bg) 84%,transparent);-webkit-backdrop-filter:saturate(1.3) blur(16px);backdrop-filter:saturate(1.3) blur(16px);border-bottom:1px solid color-mix(in srgb,var(--fg) 12%,transparent);padding-top:env(safe-area-inset-top,0px);transform:translateY(-102%);visibility:hidden;transition:transform .5s var(--ease),visibility 0s .5s}
+.past-hero .minibar{transform:none;visibility:visible;transition:transform .5s var(--ease),visibility 0s}
+.minibar-inner{display:flex;justify-content:space-between;align-items:center;height:58px}
+.minibar .brand{display:flex}
+.mini-book{display:inline-flex;align-items:center;gap:10px;min-height:38px;padding:0 16px;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+
+/* Framed inside preview.html: no scrollbar eating the phone width */
+.is-embed{scrollbar-width:none}
+.is-embed::-webkit-scrollbar{display:none}
+
+/* Behaviour that applies to every design */
+@media (max-width:640px){.nav-barbers{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}

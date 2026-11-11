@@ -1,0 +1,29 @@
+/* Prototype style, palette and hero switcher. Independent of each page theme. Collapses to a pill on phones. */
+.ss{position:fixed;left:50%;transform:translateX(-50%);bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:2147483000;display:flex;flex-direction:column;align-items:stretch;width:max-content;max-width:calc(100vw - 20px);border-radius:20px;background:rgba(16,17,16,.92);color:#F3F6F4;border:1px solid rgba(243,246,244,.16);box-shadow:0 12px 40px rgba(0,0,0,.38);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);font:500 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0;text-transform:none;text-align:left}
+.ss-panel{display:grid;gap:2px;padding:6px 6px 0}
+.ss:not(.is-open) .ss-panel{display:none}
+.ss-group{display:flex;align-items:center;gap:2px;min-width:0}
+.ss-label{flex:none;width:52px;padding-left:8px;opacity:.55;font-size:11px;white-space:nowrap}
+.ss-opts{display:flex;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent);padding-right:14px}
+.ss-opts::-webkit-scrollbar{display:none}
+.ss-btn{appearance:none;display:inline-flex;align-items:center;gap:7px;border:0;background:transparent;color:inherit;font:inherit;min-height:34px;padding:0 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.ss-btn:hover{background:rgba(243,246,244,.1)}
+.ss-btn[aria-checked="true"]{background:#F3F6F4;color:#0E100E}
+.ss-btn:focus-visible,.ss-toggle:focus-visible{outline:2px solid #FF5A22;outline-offset:2px}
+.ss-board{color:#FF5A22;text-decoration:none}
+.ss-board:hover{background:rgba(255,90,34,.14)}
+.ss-swatch{width:12px;height:12px;border-radius:50%;background:var(--swatch);box-shadow:inset 0 0 0 1px rgba(127,127,127,.55);flex:none}
+.ss-toggle{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:0 16px;border:0;background:transparent;color:inherit;font:inherit;cursor:pointer;border-radius:20px}
+.ss-toggle .ss-dot{width:8px;height:8px;border-radius:50%;background:#FF5A22;box-shadow:0 0 0 3px rgba(255,90,34,.22)}
+.ss-summary{opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ss-summary b{font-weight:600;opacity:1}
+.ss-caret{width:10px;height:10px;transition:transform .3s;opacity:.7}
+.ss.is-open .ss-caret{transform:rotate(180deg)}
+.ss.is-open .ss-toggle{min-height:36px}
+.has-switcher body{padding-bottom:64px}
+@media(max-width:560px){
+  .ss{width:calc(100vw - 20px)}
+  .ss-label{width:46px;padding-left:6px}
+  .ss-btn{padding:0 10px;font-size:12px;min-height:36px}
+}
+@media print{.ss{display:none}}

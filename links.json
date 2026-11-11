@@ -1,0 +1,43 @@
+{
+  "studio": {
+    "name": "Summit Barber Studio",
+    "address": "7 Cross Street, Newcastle upon Tyne, NE1 4XE",
+    "instagram": "https://www.instagram.com/summit.barberstudio/",
+    "directions": "https://www.google.com/maps/search/?api=1&query=7+Cross+Street+Newcastle+upon+Tyne+NE1+4XE",
+    "mapEmbed": "https://www.google.com/maps?q=7+Cross+Street,+Newcastle+upon+Tyne+NE1+4XE&z=16&output=embed"
+  },
+  "barbers": [
+    {
+      "order": 1,
+      "initials": "KR",
+      "name": "Kieran Rose",
+      "instagramHandle": "@blackcatbarber",
+      "instagram": "https://www.instagram.com/blackcatbarber/",
+      "fresha": "https://www.fresha.com/p/kieran-rose-2718481"
+    },
+    {
+      "order": 2,
+      "initials": "BC",
+      "name": "Ben Campbell",
+      "instagramHandle": "@bwcampbell97",
+      "instagram": "https://www.instagram.com/bwcampbell97/",
+      "fresha": "https://www.fresha.com/p/ben-campbell-3229369"
+    },
+    {
+      "order": 3,
+      "initials": "BM",
+      "name": "Breandan McGhee",
+      "instagramHandle": "@canadianclipperkid",
+      "instagram": "https://www.instagram.com/canadianclipperkid/",
+      "fresha": "https://www.fresha.com/p/canadian-clipper-kid-3531518"
+    },
+    {
+      "order": 4,
+      "initials": "DR",
+      "name": "David Reed",
+      "instagramHandle": "@barber.farmer",
+      "instagram": "https://www.instagram.com/barber.farmer/",
+      "fresha": "https://www.fresha.com/p/david-reed-5806012"
+    }
+  ]
+}

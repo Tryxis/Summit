@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Summit Hero Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Prototype board: every hero variant side by side, in phone or desktop frames. Not part of the site. */
+  :root{--bg:#0E100E;--fg:#F3F6F4;--muted:#8E968F;--line:rgba(243,246,244,.14);--ember:#FF5A22;--olive:#7D8D39}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 "Archivo",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  header{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(14,16,14,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  h1{margin:0;font-weight:900;font-variation-settings:"wdth" 62;font-size:28px;letter-spacing:.01em;text-transform:uppercase}
+  h1 span{color:var(--ember)}
+  .controls{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+  .seg{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px}
+  .seg button{appearance:none;border:0;background:none;color:inherit;font:500 12px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;padding:8px 12px;border-radius:999px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+  .seg button:focus-visible{outline:2px solid var(--ember);outline-offset:2px}
+  .back{order:3;font:500 12px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;color:var(--fg);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 14px}
+  .back:hover{border-color:var(--ember);color:var(--ember)}
+  @media (min-width:900px){.back{order:0}}
+  .lbl{font:500 11px/1 "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+  main{padding:28px 24px 64px}
+  .grid{display:grid;gap:36px 28px;grid-template-columns:repeat(auto-fill,minmax(var(--cell),1fr))}
+  .cell{display:flex;flex-direction:column;gap:12px;min-width:0}
+  .cap{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-top:1px solid var(--line);padding-top:10px}
+  .cap b{font-weight:800;font-variation-settings:"wdth" 75;font-size:18px;text-transform:uppercase}
+  .cap a{white-space:nowrap;font:500 11px/1 "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.08em}
+  .cap a:hover{color:var(--ember)}
+  .cap p{margin:2px 0 0;color:var(--muted);font-size:12px}
+  .frame{position:relative;width:100%;aspect-ratio:var(--w)/var(--h);overflow:hidden;background:#000;border-radius:var(--r);box-shadow:0 0 0 1px var(--line),0 20px 50px rgba(0,0,0,.45)}
+  .frame iframe{position:absolute;left:0;top:0;width:calc(var(--w)*1px);height:calc(var(--h)*1px);border:0;transform-origin:0 0;transform:scale(var(--s,.5))}
+  [data-device="phone"]{--w:390;--h:844;--r:26px;--cell:230px}
+  [data-device="desktop"]{--w:1440;--h:900;--r:8px;--cell:520px}
+  @media (max-width:560px){[data-device="phone"]{--cell:150px}[data-device="desktop"]{--cell:280px}main{padding:20px 16px 48px}header{padding:12px 16px}}
+</style>
+</head>
+<body data-device="phone">
+<header>
+  <h1>Summit <span>/</span> Hero board</h1>
+  <a class="back" id="back" href="index.html">← Back to site</a>
+  <div class="controls">
+    <span class="lbl">Style</span><div class="seg" data-key="style"><button data-v="swiss" aria-pressed="true">Swiss</button><button data-v="alpine">Alpine</button></div>
+    <span class="lbl">Palette</span><div class="seg" data-key="palette"></div>
+    <span class="lbl">Device</span><div class="seg" data-key="device"><button data-v="phone" aria-pressed="true">Phone</button><button data-v="desktop">Desktop</button></div>
+  </div>
+</header>
+<main><div class="grid" id="grid"></div></main>
+<script src="js/themes.js"></script>
+<script>
+(function () {
+  var NOTES = {
+    cinema: 'Full-bleed film. Shutters (Swiss) or an iris (Alpine) open, the mark draws on, the wordmark wipes in.',
+    knockout: 'The wordmark is a window onto the film. Scroll flies through the I into the footage.',
+    geometry: 'Live line drawing over the film: grid, orbit and the Summit peak (Swiss), drifting contours (Alpine).',
+    editorial: 'Framed portrait film with timecode, wordmark beside it, address ticker below.',
+    duotone: 'Film mapped to the palette accent: deep accent shadows, accent-tint highlights.',
+    classic: 'The original static hero for comparison.'
+  };
+  var q = new URLSearchParams(location.search);
+  var state = {
+    style: SUMMIT_THEMES.some(function (t) { return t.id === q.get('style'); }) ? q.get('style') : 'swiss',
+    palette: q.get('palette'),
+    device: q.get('device') === 'desktop' ? 'desktop' : 'phone'
+  };
+  var grid = document.getElementById('grid');
+  function theme() { return SUMMIT_THEMES.filter(function (t) { return t.id === state.style; })[0]; }
+  function segs() {
+    var pal = document.querySelector('[data-key="palette"]');
+    pal.innerHTML = '';
+    theme().palettes.forEach(function (p, i) {
+      var b = document.createElement('button'); b.dataset.v = p.id; b.textContent = p.label; pal.appendChild(b);
+    });
+    if (!state.palette || !theme().palettes.some(function (p) { return p.id === state.palette; })) state.palette = theme().palettes[0].id;
+    document.querySelectorAll('.seg').forEach(function (s) {
+      s.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.v === state[s.dataset.key]); });
+    });
+  }
+  function render() {
+    segs();
+    document.body.dataset.device = state.device;
+    document.getElementById('back').href = 'index.html?style=' + state.style + '&palette=' + state.palette;
+    try { history.replaceState(null, '', '?style=' + state.style + '&palette=' + state.palette + '&device=' + state.device); } catch (e) {}
+    grid.innerHTML = '';
+    SUMMIT_HEROES.forEach(function (h) {
+      var url = 'index.html?style=' + state.style + '&palette=' + state.palette + '&hero=' + h.id;
+      var cell = document.createElement('section'); cell.className = 'cell';
+      cell.innerHTML = '<div class="frame"><iframe loading="lazy" title="' + h.label + ' hero preview" src="' + url + '&switcher=off&embed=1"></iframe></div>' +
+        '<div class="cap"><div><b>' + h.label + '</b><p>' + NOTES[h.id] + '</p></div><a href="' + url + '" target="_blank" rel="noopener">Open ↗</a></div>';
+      grid.appendChild(cell);
+    });
+    fit();
+  }
+  function fit() {
+    var w = state.device === 'phone' ? 390 : 1440;
+    grid.querySelectorAll('.frame').forEach(function (f) { f.style.setProperty('--s', f.clientWidth / w); });
+  }
+  document.querySelector('header').addEventListener('click', function (e) {
+    var b = e.target.closest('.seg button'); if (!b) return;
+    state[b.parentNode.dataset.key] = b.dataset.v; render();
+  });
+  addEventListener('resize', fit);
+  render();
+})();
+</script>
+</body>
+</html>
